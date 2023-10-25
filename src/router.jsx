@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "./layouts/RootLayout";
-import ErrorBoundary from "./views/ErrorBoundary";
+import { RootLayout } from "./layouts";
+import { ErrorBoundary } from "./pages";
 
 const router = createBrowserRouter([
   {
