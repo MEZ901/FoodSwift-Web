@@ -1,6 +1,6 @@
 import { useRouteError } from "react-router-dom";
 
-const ErrorBoundary = () => {
+const ErrorBoundaryPage = () => {
   const error = useRouteError();
   return (
     <section className="bg-white min-h-screen flex items-center">
@@ -21,4 +21,4 @@ const ErrorBoundary = () => {
   );
 };
 
-export default ErrorBoundary;
+export default ErrorBoundaryPage;

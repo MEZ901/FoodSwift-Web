@@ -1,3 +1,4 @@
-import ErrorBoundary from "./ErrorBoundary";
+import ErrorBoundaryPage from "./ErrorBoundaryPage";
+import NotFoundPage from "./NotFoundPage";
 
-export { ErrorBoundary };
+export { ErrorBoundaryPage, NotFoundPage };
