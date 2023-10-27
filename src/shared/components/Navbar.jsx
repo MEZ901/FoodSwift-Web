@@ -13,7 +13,6 @@ import { useState } from "react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [position, setPosition] = useState(0);
 
   const menuItems = [
     "Profile",
@@ -28,11 +27,7 @@ const Navbar = () => {
     "Log Out",
   ];
   return (
-    <Nav
-      maxWidth="xl"
-      onMenuOpenChange={setIsMenuOpen}
-      onScrollPositionChange={(pos) => setPosition(pos)}
-    >
+    <Nav onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
