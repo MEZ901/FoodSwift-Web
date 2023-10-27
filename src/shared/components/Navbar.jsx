@@ -33,7 +33,7 @@ const Navbar = () => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand>
+        <NavbarBrand className="cursor-pointer">
           <img src="/src/assets/logo.png" width={70} alt="Logo" />
         </NavbarBrand>
       </NavbarContent>

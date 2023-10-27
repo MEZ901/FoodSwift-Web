@@ -8,7 +8,8 @@ const Hero = () => {
       <div className="w-full lg:w-1/2">
         <div className="lg:max-w-lg">
           <h1 className="text-3xl font-semibold tracking-wide text-gray-800 lg:text-4xl">
-            Satisfy Your Cravings, Anytime, Anywhere
+            Satisfy Your Cravings,{" "}
+            <span className="text-blue-500">Anytime, Anywhere</span>
           </h1>
 
           <div className="mt-8 space-y-5">

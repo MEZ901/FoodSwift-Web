@@ -1,20 +1,20 @@
-const VerifiedIcon = () => {
+const StarsIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6 mx-2 text-blue-500"
+      className="w-8 h-8"
       fill="none"
       viewBox="0 0 24 24"
-      stroke="rgb(59 130 246)"
+      stroke="currentColor"
     >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"
-        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
       />
     </svg>
   );
 };
 
-export default VerifiedIcon;
+export default StarsIcon;
