@@ -1,9 +1,28 @@
 import { features } from "../constants";
 import FeatureCard from "./FeatureCard";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const Features = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const sectionAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <motion.section
+      className="bg-white dark:bg-gray-900"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={sectionAnimation}
+      transition={{ duration: 1 }}
+      ref={ref}
+    >
       <div className="container px-6 py-10 mx-auto">
         <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
           explore our <br /> awesome{" "}
@@ -20,7 +39,7 @@ const Features = () => {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

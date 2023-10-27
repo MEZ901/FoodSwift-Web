@@ -1,10 +1,29 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { RightArrowIcon } from "../../../shared/icons";
+import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 const FeatureCard = ({ icon, title, description }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const cardAnimation = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <div className="p-8 space-y-3 border-2 border-blue-400 rounded-xl">
+    <motion.div
+      className="p-8 space-y-3 border-2 border-blue-400 rounded-xl"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={cardAnimation}
+      transition={{ duration: 0.5 }}
+      ref={ref}
+    >
       <span className="inline-block text-blue-500">{icon}</span>
 
       <h1 className="text-xl font-semibold text-gray-700 capitalize">
@@ -19,7 +38,7 @@ const FeatureCard = ({ icon, title, description }) => {
       >
         <RightArrowIcon />
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
