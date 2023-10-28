@@ -16,7 +16,8 @@ const Hero = () => {
         <div className="lg:max-w-lg">
           <h1 className="text-3xl font-semibold tracking-wide text-gray-800 lg:text-4xl">
             Satisfy Your Cravings,{" "}
-            <span className="text-blue-500">Anytime, Anywhere</span>
+            <span className="underline decoration-blue-500">Anytime</span>,{" "}
+            <span className="underline decoration-blue-500">Anywhere</span>
           </h1>
 
           <div className="mt-8 space-y-5">
