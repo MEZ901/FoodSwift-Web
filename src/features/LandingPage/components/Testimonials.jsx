@@ -1,5 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import TestimonialCard from "./TestimonialCard";
+import { testimonials } from "../constants";
 
 const Testimonials = () => {
   const [ref, inView] = useInView({
@@ -33,65 +35,9 @@ const Testimonials = () => {
         </p>
 
         <div className="grid grid-cols-1 gap-8 mx-auto mt-8 lg:grid-cols-2 xl:mt-10 max-w-7xl">
-          <motion.div
-            className="p-6 bg-gray-100 rounded-lg dark:bg-gray-800 md:p-8"
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0, x: -20 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <p className="leading-loose text-gray-500 dark:text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-              quibusdam ducimus libero ad tempora doloribus expedita laborum
-              saepe voluptas perferendis delectus assumenda rerum, culpa aperiam
-              dolorum, obcaecati corrupti aspernatur a.
-            </p>
-
-            <div className="flex items-center mt-6">
-              <img
-                className="object-cover rounded-full w-14 h-14"
-                src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-                alt=""
-              />
-
-              <div className="mx-4">
-                <h1 className="font-semibold text-blue-500">Robbert</h1>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="p-6 bg-gray-100 rounded-lg dark:bg-gray-800 md:p-8"
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0, x: 20 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <p className="leading-loose text-gray-500 dark:text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore
-              quibusdam ducimus libero ad tempora doloribus expedita laborum
-              saepe voluptas perferendis delectus assumenda rerum, culpa aperiam
-              dolorum, obcaecati corrupti aspernatur a.
-            </p>
-
-            <div className="flex items-center mt-6">
-              <img
-                className="object-cover rounded-full w-14 h-14"
-                src="https://images.unsplash.com/photo-1499470932971-a90681ce8530?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                alt=""
-              />
-
-              <div className="mx-4">
-                <h1 className="font-semibold text-blue-500">Mia Brown</h1>
-              </div>
-            </div>
-          </motion.div>
+          {testimonials.map((testimonial, index) => (
+            <TestimonialCard key={index} {...testimonial} inView={inView} />
+          ))}
         </div>
       </div>
     </motion.section>
