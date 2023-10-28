@@ -10,6 +10,7 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 import { useState } from "react";
+import Logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ const Navbar = () => {
           className="sm:hidden"
         />
         <NavbarBrand className="cursor-pointer">
-          <img src="/src/assets/logo.png" width={70} alt="Logo" />
+          <img src={Logo} width={70} alt="Logo" />
         </NavbarBrand>
       </NavbarContent>
 

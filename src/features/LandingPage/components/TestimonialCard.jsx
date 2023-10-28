@@ -1,7 +1,12 @@
 import propTypes from "prop-types";
 import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
-const TestimonialCard = ({ content, profile, name, inView }) => {
+const TestimonialCard = ({ content, profile, name }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
   return (
     <motion.div
       className="p-6 bg-gray-100 rounded-lg dark:bg-gray-800 md:p-8"
@@ -12,6 +17,7 @@ const TestimonialCard = ({ content, profile, name, inView }) => {
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.5, delay: 0.2 }}
+      ref={ref}
     >
       <p className="leading-loose text-gray-500 dark:text-gray-300">
         {content}
@@ -36,7 +42,6 @@ TestimonialCard.propTypes = {
   content: propTypes.string.isRequired,
   profile: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
-  inView: propTypes.bool.isRequired,
 };
 
 export default TestimonialCard;

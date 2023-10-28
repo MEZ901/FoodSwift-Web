@@ -1,4 +1,4 @@
-import { Hero, Features } from "../components";
+import { Hero, Features, Footer } from "../components";
 import Testimonials from "../components/Testimonials";
 
 const LandingPageContainer = () => {
@@ -7,6 +7,7 @@ const LandingPageContainer = () => {
       <Hero />
       <Features />
       <Testimonials />
+      <Footer />
     </div>
   );
 };
