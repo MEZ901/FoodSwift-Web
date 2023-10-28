@@ -6,6 +6,9 @@ import StarsIcon from "./StarsIcon";
 import ListIcon from "./ListIcon";
 import SecurityIcon from "./SecurityIcon";
 import SupportIcon from "./SupportIcon";
+import EyeFilledIcon from "./EyeFilledIcon";
+import EyeSlashFilledIcon from "./EyeSlashFilledIcon";
+import GoogleIcon from "./GoogleIcon";
 
 export {
   VerifiedIcon,
@@ -16,4 +19,7 @@ export {
   ListIcon,
   SecurityIcon,
   SupportIcon,
+  EyeFilledIcon,
+  EyeSlashFilledIcon,
+  GoogleIcon,
 };

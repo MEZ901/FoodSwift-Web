@@ -5,9 +5,7 @@ const UserLayout = () => {
   return (
     <>
       <Navbar />
-      <div className="container">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 };
