@@ -9,6 +9,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
+import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../../assets/logo.png";
 
@@ -34,7 +35,7 @@ const Navbar = () => {
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand className="cursor-pointer">
+        <NavbarBrand className="cursor-pointer" as={RouterLink} to="/">
           <img src={Logo} width={70} alt="Logo" />
         </NavbarBrand>
       </NavbarContent>
@@ -58,10 +59,17 @@ const Navbar = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link color="foreground" as={RouterLink} to="/auth/login">
+            Login
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button
+            color="primary"
+            variant="flat"
+            as={RouterLink}
+            to="/auth/register"
+          >
             Sign Up
           </Button>
         </NavbarItem>

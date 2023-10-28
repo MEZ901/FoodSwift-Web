@@ -16,7 +16,7 @@ const Features = () => {
 
   return (
     <motion.section
-      className="bg-white dark:bg-gray-900"
+      className="bg-white"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={sectionAnimation}
@@ -24,12 +24,12 @@ const Features = () => {
       ref={ref}
     >
       <div className="container px-6 py-10 mx-auto">
-        <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
+        <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl">
           explore our <br /> awesome{" "}
           <span className="underline decoration-blue-500">Features</span>
         </h1>
 
-        <p className="mt-4 text-gray-500 xl:mt-6 dark:text-gray-300">
+        <p className="mt-4 text-gray-500 xl:mt-6">
           Discover the Ultimate Dining Experience with Our Remarkable Features
         </p>
 

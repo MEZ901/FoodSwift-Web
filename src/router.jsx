@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { RootLayout, UserLayout } from "./layouts";
 import { ErrorBoundaryPage, NotFoundPage } from "./pages";
 import landingPageRoutes from "./features/LandingPage/routes/landingPageRoutes";
+import authRoutes from "./features/Auth/routes/authRoutes";
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <UserLayout />,
-        children: [...landingPageRoutes],
+        children: [...landingPageRoutes, ...authRoutes],
       },
       {
         path: "*",

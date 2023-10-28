@@ -12,11 +12,15 @@ const NotFoundPage = () => {
         </p>
 
         <p className="mt-4 text-gray-500">We can&rsquo;t find that page.</p>
-        <Link to="/">
-          <Button color="default" className="mt-3 px-8 py-5" variant="shadow">
-            Go Back Home
-          </Button>
-        </Link>
+        <Button
+          color="default"
+          className="mt-3 px-8 py-5"
+          variant="shadow"
+          as={Link}
+          to="/"
+        >
+          Go Back Home
+        </Button>
       </div>
     </div>
   );

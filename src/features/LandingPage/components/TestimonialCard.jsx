@@ -9,7 +9,7 @@ const TestimonialCard = ({ content, profile, name }) => {
   });
   return (
     <motion.div
-      className="p-6 bg-gray-100 rounded-lg dark:bg-gray-800 md:p-8"
+      className="p-6 bg-gray-100 rounded-lg md:p-8"
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       variants={{
@@ -19,9 +19,7 @@ const TestimonialCard = ({ content, profile, name }) => {
       transition={{ duration: 0.5, delay: 0.2 }}
       ref={ref}
     >
-      <p className="leading-loose text-gray-500 dark:text-gray-300">
-        {content}
-      </p>
+      <p className="leading-loose text-gray-500">{content}</p>
 
       <div className="flex items-center mt-6">
         <img
