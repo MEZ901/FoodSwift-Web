@@ -22,7 +22,7 @@ const AuthLayout = () => {
 
   return (
     <section className="bg-white">
-      <div className="container flex  justify-center px-6 mx-auto my-2 md:my-0">
+      <div className="container flex  justify-center px-6 mx-auto my-2">
         <div className="w-full max-w-md">
           <div className="flex justify-center mx-auto">
             <img width={80} src={Logo} alt="logo" />
