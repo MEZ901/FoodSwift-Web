@@ -1,11 +1,9 @@
 import { Button, Checkbox, Input, useDisclosure } from "@nextui-org/react";
 import { useState } from "react";
-import {
-  EyeFilledIcon,
-  EyeSlashFilledIcon,
-  UploadIcon,
-} from "../../../shared/icons";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "../../../shared/icons";
 import TermsModal from "./TermsModal";
+import { useFormik } from "formik";
+import { registerSchema } from "../schemas";
 
 const RegisterForm = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -20,38 +18,80 @@ const RegisterForm = () => {
   const togglePasswordConfirmationVisibility = () =>
     setIsPasswordConfirmationVisible(!isPasswordConfirmationVisible);
 
+  const { values, errors, touched, handleChange, handleSubmit, handleBlur } =
+    useFormik({
+      initialValues: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        passwordConfirmation: "",
+      },
+      validationSchema: registerSchema,
+      onSubmit: async (values) => {
+        console.log(values);
+      },
+    });
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="mt-4 flex gap-4">
-        <Input type="text" variant="bordered" label="First Name" isRequired />
-        <Input type="text" variant="bordered" label="Last Name" isRequired />
+        <Input
+          type="text"
+          variant="bordered"
+          label="First Name"
+          name="firstName"
+          value={values.firstName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={touched.firstName && errors.firstName ? true : false}
+          errorMessage={
+            errors.firstName && touched.firstName ? errors.firstName : null
+          }
+        />
+
+        <Input
+          type="text"
+          variant="bordered"
+          label="Last Name"
+          name="lastName"
+          value={values.lastName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={touched.lastName && errors.lastName ? true : false}
+          errorMessage={
+            errors.lastName && touched.lastName ? errors.lastName : null
+          }
+        />
       </div>
 
       <div className="mt-4">
-        <Input type="text" variant="bordered" label="Phone number" />
-      </div>
-
-      <div className="mt-4">
-        <label
-          htmlFor="dropzone-file"
-          className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer border-gray-300 hover:border-gray-400"
-        >
-          <UploadIcon />
-
-          <h2 className="mx-3 text-gray-400">Profile Photo</h2>
-
-          <input id="dropzone-file" type="file" className="hidden" />
-        </label>
-      </div>
-
-      <div className="mt-4">
-        <Input type="email" variant="bordered" label="Email" isRequired />
+        <Input
+          type="email"
+          variant="bordered"
+          label="Email"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={touched.email && errors.email ? true : false}
+          errorMessage={errors.email && touched.email ? errors.email : null}
+        />
       </div>
 
       <div className="mt-4">
         <Input
           label="Password"
           variant="bordered"
+          name="password"
+          type={isPasswordVisible ? "text" : "password"}
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={touched.password && errors.password ? true : false}
+          errorMessage={
+            errors.password && touched.password ? errors.password : null
+          }
           endContent={
             <button
               className="focus:outline-none"
@@ -65,8 +105,6 @@ const RegisterForm = () => {
               )}
             </button>
           }
-          type={isPasswordVisible ? "text" : "password"}
-          isRequired
         />
       </div>
 
@@ -74,6 +112,21 @@ const RegisterForm = () => {
         <Input
           label="Confirm Password"
           variant="bordered"
+          name="passwordConfirmation"
+          type={isPasswordConfirmationVisible ? "text" : "password"}
+          value={values.passwordConfirmation}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={
+            touched.passwordConfirmation && errors.passwordConfirmation
+              ? true
+              : false
+          }
+          errorMessage={
+            errors.passwordConfirmation && touched.passwordConfirmation
+              ? errors.passwordConfirmation
+              : null
+          }
           endContent={
             <button
               className="focus:outline-none"
@@ -87,13 +140,11 @@ const RegisterForm = () => {
               )}
             </button>
           }
-          type={isPasswordConfirmationVisible ? "text" : "password"}
-          isRequired
         />
       </div>
 
       <div className="mt-4">
-        <Checkbox isRequired>I have read and agree to the</Checkbox>{" "}
+        <Checkbox>I have read and agree to the</Checkbox>{" "}
         <span
           className="text-blue-500 hover:underline cursor-pointer"
           onClick={() => onOpen()}
