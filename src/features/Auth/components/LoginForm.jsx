@@ -1,4 +1,4 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button, Checkbox, Input } from "@nextui-org/react";
 import { useState } from "react";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../../shared/icons";
 
@@ -9,7 +9,7 @@ const LoginForm = () => {
   return (
     <form>
       <div className="mt-4">
-        <Input type="email" variant="bordered" label="Email" />
+        <Input type="email" variant="bordered" label="Email" isRequired />
       </div>
 
       <div className="mt-4">
@@ -30,9 +30,11 @@ const LoginForm = () => {
             </button>
           }
           type={isVisible ? "text" : "password"}
+          isRequired
         />
 
-        <div className="flex justify-end w-full mt-4">
+        <div className="flex justify-between w-full mt-4">
+          <Checkbox size="md">Remember me</Checkbox>
           <a href="#" className="text-xs text-gray-500 hover:underline">
             Forget Password?
           </a>
@@ -40,7 +42,7 @@ const LoginForm = () => {
       </div>
 
       <div className="mt-6">
-        <Button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+        <Button fullWidth color="primary" type="submit">
           Sign In
         </Button>
       </div>
