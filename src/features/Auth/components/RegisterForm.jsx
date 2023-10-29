@@ -1,12 +1,15 @@
-import { Button, Input } from "@nextui-org/react";
+import { Button, Checkbox, Input, useDisclosure } from "@nextui-org/react";
 import { useState } from "react";
 import {
   EyeFilledIcon,
   EyeSlashFilledIcon,
   UploadIcon,
 } from "../../../shared/icons";
+import TermsModal from "./TermsModal";
 
 const RegisterForm = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordConfirmationVisible, setIsPasswordConfirmationVisible] =
     useState(false);
@@ -89,9 +92,20 @@ const RegisterForm = () => {
         />
       </div>
 
+      <div className="mt-4">
+        <Checkbox isRequired>I have read and agree to the</Checkbox>{" "}
+        <span
+          className="text-blue-500 hover:underline cursor-pointer"
+          onClick={() => onOpen()}
+        >
+          Terms of Use
+        </span>
+        <TermsModal isOpen={isOpen} onOpenChange={onOpenChange} />
+      </div>
+
       <div className="mt-6">
         <Button fullWidth color="primary" type="submit">
-          Sign up
+          Register
         </Button>
       </div>
     </form>
