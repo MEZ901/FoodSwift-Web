@@ -39,16 +39,13 @@ const LoginContainer = () => {
           </Button>
 
           <div className="flex items-center justify-between mt-4">
-            <span className="w-1/5 border-b lg:w-1/4"></span>
+            <span className="w-2/6 border-b lg:w-2/5"></span>
 
-            <a
-              href="#"
-              className="text-xs text-center text-gray-500 uppercase hover:underline"
-            >
-              or login with email
-            </a>
+            <p className="text-xs text-center text-gray-500 uppercase cursor-pointer">
+              or
+            </p>
 
-            <span className="w-1/5 border-b lg:w-1/4"></span>
+            <span className="w-2/6 border-b lg:w-2/5"></span>
           </div>
 
           <LoginForm />

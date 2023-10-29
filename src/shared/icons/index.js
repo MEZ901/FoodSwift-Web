@@ -9,6 +9,7 @@ import SupportIcon from "./SupportIcon";
 import EyeFilledIcon from "./EyeFilledIcon";
 import EyeSlashFilledIcon from "./EyeSlashFilledIcon";
 import GoogleIcon from "./GoogleIcon";
+import UploadIcon from "./UploadIcon";
 
 export {
   VerifiedIcon,
@@ -22,4 +23,5 @@ export {
   EyeFilledIcon,
   EyeSlashFilledIcon,
   GoogleIcon,
+  UploadIcon,
 };
