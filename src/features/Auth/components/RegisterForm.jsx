@@ -4,10 +4,19 @@ import { EyeFilledIcon, EyeSlashFilledIcon } from "../../../shared/icons";
 import TermsModal from "./TermsModal";
 import { useFormik } from "formik";
 import { registerSchema } from "../schemas";
+import { useRegisterMutation } from "../redux/authApiSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../redux/authSlice";
+import { encryptData } from "../../../utils/helpers";
+import Alert from "../../../shared/components/Alert";
 
 const RegisterForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+  const [error, setError] = useState(null);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordConfirmationVisible, setIsPasswordConfirmationVisible] =
     useState(false);
@@ -17,6 +26,8 @@ const RegisterForm = () => {
 
   const togglePasswordConfirmationVisibility = () =>
     setIsPasswordConfirmationVisible(!isPasswordConfirmationVisible);
+
+  const [register, { isLoading }] = useRegisterMutation();
 
   const { values, errors, touched, handleChange, handleSubmit, handleBlur } =
     useFormik({
@@ -28,13 +39,31 @@ const RegisterForm = () => {
         passwordConfirmation: "",
       },
       validationSchema: registerSchema,
-      onSubmit: async (values) => {
-        console.log(values);
+      onSubmit: async ({ passwordConfirmation, ...rest }) => {
+        try {
+          const { user } = await register(rest).unwrap();
+
+          dispatch(setCredentials({ ...user }));
+
+          const encryptedUser = encryptData(user);
+          localStorage.setItem("user", encryptedUser);
+
+          navigate("/customer");
+        } catch (error) {
+          if (!error?.data) setError("No response");
+          else if (error?.status === 400) setError("Invalid credentials");
+          else if (error?.status === 409) setError("Email already exists");
+          else if (error?.status === 500) setError("Internal server error");
+          else setError("register failed");
+        }
       },
     });
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && (
+        <Alert mode="error" message={error} onClose={() => setError(null)} />
+      )}
       <div className="mt-4 flex gap-4">
         <Input
           type="text"
@@ -155,7 +184,7 @@ const RegisterForm = () => {
       </div>
 
       <div className="mt-6">
-        <Button fullWidth color="primary" type="submit">
+        <Button fullWidth color="primary" type="submit" isLoading={isLoading}>
           Register
         </Button>
       </div>
