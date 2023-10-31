@@ -8,13 +8,38 @@ import {
   NavbarMenuToggle,
   NavbarMenu,
   NavbarMenuItem,
+  Avatar,
+  AvatarIcon,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
 } from "@nextui-org/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../../assets/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser } from "../../features/Auth/redux/authSelectors";
+import { logOut } from "../../features/Auth/redux/authSlice";
+import { useLogoutMutation } from "../../features/Auth/redux/authApiSlice";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = useSelector(selectCurrentUser);
+
+  const [logout] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      dispatch(logOut());
+      localStorage.removeItem("user");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const menuItems = [
     "Profile",
@@ -58,21 +83,59 @@ const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link color="foreground" as={RouterLink} to="/auth/login">
-            Login
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            color="primary"
-            variant="flat"
-            as={RouterLink}
-            to="/auth/register"
-          >
-            Sign Up
-          </Button>
-        </NavbarItem>
+        {user ? (
+          <NavbarItem className="hidden lg:flex cursor-pointer">
+            <Dropdown placement="bottom-end">
+              <DropdownTrigger>
+                <Avatar
+                  isBordered
+                  as="button"
+                  className="transition-transform"
+                  icon={<AvatarIcon name="user" />}
+                />
+              </DropdownTrigger>
+              <DropdownMenu aria-label="Profile Actions" variant="flat">
+                <DropdownItem key="profile" className="h-14 gap-2">
+                  <p className="font-semibold">Signed in as</p>
+                  <p className="font-semibold">{user.email}</p>
+                </DropdownItem>
+                <DropdownItem key="settings">My Settings</DropdownItem>
+                <DropdownItem key="team_settings">Team Settings</DropdownItem>
+                <DropdownItem key="analytics">Analytics</DropdownItem>
+                <DropdownItem key="system">System</DropdownItem>
+                <DropdownItem key="configurations">Configurations</DropdownItem>
+                <DropdownItem key="help_and_feedback">
+                  Help & Feedback
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  onClick={handleLogout}
+                >
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </NavbarItem>
+        ) : (
+          <>
+            <NavbarItem className="hidden lg:flex">
+              <Link color="foreground" as={RouterLink} to="/auth/login">
+                Login
+              </Link>
+            </NavbarItem>
+            <NavbarItem>
+              <Button
+                color="primary"
+                variant="flat"
+                as={RouterLink}
+                to="/auth/register"
+              >
+                Sign Up
+              </Button>
+            </NavbarItem>
+          </>
+        )}
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (

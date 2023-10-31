@@ -39,6 +39,7 @@ const RegisterForm = () => {
         passwordConfirmation: "",
       },
       validationSchema: registerSchema,
+      // eslint-disable-next-line no-unused-vars
       onSubmit: async ({ passwordConfirmation, ...rest }) => {
         try {
           const { user } = await register(rest).unwrap();
