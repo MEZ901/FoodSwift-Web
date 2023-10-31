@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  web:
+    container_name: foodswift_web
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    image: foodswift_web:1.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
