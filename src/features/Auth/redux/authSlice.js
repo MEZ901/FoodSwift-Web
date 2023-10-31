@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { decryptData } from "../../../utils/helpers";
 
 const initialState = {
-  user: null,
+  user: localStorage.getItem("user")
+    ? decryptData(localStorage.getItem("user"))
+    : null,
 };
 
 const authSlice = createSlice({

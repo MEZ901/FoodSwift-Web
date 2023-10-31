@@ -8,13 +8,14 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 import Alert from "../../../shared/components/Alert";
+import { encryptData } from "../../../utils/helpers";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [isVisible, setIsVisible] = useState(false);
-  const [error, setError] = useState(null); // [1
+  const [error, setError] = useState(null);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -33,19 +34,16 @@ const LoginForm = () => {
 
           dispatch(setCredentials({ ...user }));
 
+          const encryptedUser = encryptData(user);
+          localStorage.setItem("user", encryptedUser);
+
           navigate("/customer");
         } catch (error) {
-          if (!error?.data) {
-            setError("No response");
-          } else if (error?.status === 400) {
-            setError("Invalid credentials");
-          } else if (error?.status === 404) {
-            setError("User not found");
-          } else if (error?.status === 401) {
-            setError("incorrect password");
-          } else {
-            setError("Login failed");
-          }
+          if (!error?.data) setError("No response");
+          else if (error?.status === 400) setError("Invalid credentials");
+          else if (error?.status === 404) setError("User not found");
+          else if (error?.status === 401) setError("Incorrect password");
+          else setError("Login failed");
         }
       },
     });
@@ -55,6 +53,7 @@ const LoginForm = () => {
       {error && (
         <Alert mode="error" message={error} onClose={() => setError(null)} />
       )}
+
       <div className="mt-4">
         <Input
           type="email"
