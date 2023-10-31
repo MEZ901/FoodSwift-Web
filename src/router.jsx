@@ -3,6 +3,7 @@ import { RootLayout, UserLayout } from "./layouts";
 import { ErrorBoundaryPage, NotFoundPage } from "./pages";
 import landingPageRoutes from "./features/LandingPage/routes/landingPageRoutes";
 import authRoutes from "./features/Auth/routes/authRoutes";
+import customerRoutes from "./features/customer/routes/customerRoutes";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <UserLayout />,
-        children: [...landingPageRoutes, ...authRoutes],
+        children: [...landingPageRoutes, ...authRoutes, ...customerRoutes],
       },
       {
         path: "*",

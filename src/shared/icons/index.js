@@ -10,6 +10,11 @@ import EyeFilledIcon from "./EyeFilledIcon";
 import EyeSlashFilledIcon from "./EyeSlashFilledIcon";
 import GoogleIcon from "./GoogleIcon";
 import UploadIcon from "./UploadIcon";
+import ErrorIcon from "./ErrorIcon";
+import WarningIcon from "./WarningIcon";
+import InfoIcon from "./InfoIcon";
+import SuccessIcon from "./SuccessIcon";
+import CloseIcon from "./CloseIcon";
 
 export {
   VerifiedIcon,
@@ -24,4 +29,9 @@ export {
   EyeSlashFilledIcon,
   GoogleIcon,
   UploadIcon,
+  ErrorIcon,
+  WarningIcon,
+  InfoIcon,
+  SuccessIcon,
+  CloseIcon,
 };

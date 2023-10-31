@@ -3,11 +3,22 @@ import { useState } from "react";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "../../../shared/icons";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
+import { useLoginMutation } from "../redux/authApiSlice";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
+import Alert from "../../../shared/components/Alert";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isVisible, setIsVisible] = useState(false);
+  const [error, setError] = useState(null); // [1
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const [login, { isLoading }] = useLoginMutation();
 
   const { values, errors, touched, handleChange, handleSubmit, handleBlur } =
     useFormik({
@@ -16,13 +27,34 @@ const LoginForm = () => {
         password: "",
       },
       validationSchema: loginSchema,
-      onSubmit: async (values) => {
-        console.log(values);
+      onSubmit: async ({ email, password }) => {
+        try {
+          const { user } = await login({ email, password }).unwrap();
+
+          dispatch(setCredentials({ ...user }));
+
+          navigate("/customer");
+        } catch (error) {
+          if (!error?.data) {
+            setError("No response");
+          } else if (error?.status === 400) {
+            setError("Invalid credentials");
+          } else if (error?.status === 404) {
+            setError("User not found");
+          } else if (error?.status === 401) {
+            setError("incorrect password");
+          } else {
+            setError("Login failed");
+          }
+        }
       },
     });
 
   return (
     <form onSubmit={handleSubmit}>
+      {error && (
+        <Alert mode="error" message={error} onClose={() => setError(null)} />
+      )}
       <div className="mt-4">
         <Input
           type="email"
@@ -74,7 +106,7 @@ const LoginForm = () => {
       </div>
 
       <div className="mt-6">
-        <Button fullWidth color="primary" type="submit">
+        <Button fullWidth color="primary" type="submit" isLoading={isLoading}>
           Sign In
         </Button>
       </div>
