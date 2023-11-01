@@ -7,7 +7,7 @@ const AuthMiddleware = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   if (!isLoggedIn) {
-    return <Navigate to="/auth/login" />;
+    return <Navigate to="/" />;
   }
 
   return children;

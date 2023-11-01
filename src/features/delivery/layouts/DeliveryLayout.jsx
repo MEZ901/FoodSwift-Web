@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-const UserLayout = () => {
+const DeliveryLayout = () => {
   return <Outlet />;
 };
 
-export default UserLayout;
+export default DeliveryLayout;
