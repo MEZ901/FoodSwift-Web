@@ -8,6 +8,7 @@ import deliveryRoutes from "./features/delivery/routes/deliveryRoutes";
 import { AuthMiddleware, GuestMiddleware } from "./features/Auth/middlewares";
 import sharedRoutes from "./shared/routes/sharedRoutes";
 import store from "./app/store";
+import managerRoutes from "./features/manager/routes/managerRoutes";
 
 let isLoggedIn = !!store.getState().auth.user;
 
@@ -30,7 +31,12 @@ const router = createBrowserRouter([
                 <UserLayout />
               </AuthMiddleware>
             ),
-            children: [...sharedRoutes, ...customerRoutes, ...deliveryRoutes],
+            children: [
+              ...sharedRoutes,
+              ...customerRoutes,
+              ...deliveryRoutes,
+              ...managerRoutes,
+            ],
           }
         : {
             path: "/",

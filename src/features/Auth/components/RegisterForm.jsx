@@ -49,7 +49,7 @@ const RegisterForm = () => {
           const encryptedUser = encryptData(user);
           localStorage.setItem("user", encryptedUser);
 
-          navigate("/customer");
+          navigate("/profile");
         } catch (error) {
           if (!error?.data) setError("No response");
           else if (error?.status === 400) setError("Invalid credentials");

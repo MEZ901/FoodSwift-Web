@@ -1,3 +1,10 @@
+import store from "../../app/store";
+import CustomerProfileContainer from "../../features/customer/containers/CustomerProfileContainer";
+import DeliveryProfileContainer from "../../features/delivery/containers/DeliveryProfileContainer";
+import ManagerProfileContainer from "../../features/manager/containers/ManagerProfileContainer";
+
+const userRoles = store.getState().auth.user?.roles;
+
 const sharedRoutes = [
   {
     path: "/",
@@ -5,7 +12,16 @@ const sharedRoutes = [
   },
   {
     path: "/profile",
-    element: <h1>Profile</h1>,
+    element: (() => {
+      switch (true) {
+        case userRoles?.includes("manager"):
+          return <ManagerProfileContainer />;
+        case userRoles?.includes("delivery"):
+          return <DeliveryProfileContainer />;
+        default:
+          return <CustomerProfileContainer />;
+      }
+    })(),
   },
 ];
 
