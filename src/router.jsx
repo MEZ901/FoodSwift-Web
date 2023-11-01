@@ -3,12 +3,12 @@ import { GuestLayout, RootLayout, UserLayout } from "./layouts";
 import { ErrorBoundaryPage, NotFoundPage } from "./pages";
 import landingPageRoutes from "./features/LandingPage/routes/landingPageRoutes";
 import authRoutes from "./features/Auth/routes/authRoutes";
-import customerRoutes from "./features/customer/routes/customerRoutes";
-import deliveryRoutes from "./features/delivery/routes/deliveryRoutes";
+import customerRoutes from "./features/Customer/routes/customerRoutes";
+import deliveryRoutes from "./features/Delivery/routes/deliveryRoutes";
+import managerRoutes from "./features/Manager/routes/managerRoutes";
 import { AuthMiddleware, GuestMiddleware } from "./features/Auth/middlewares";
 import sharedRoutes from "./shared/routes/sharedRoutes";
 import store from "./app/store";
-import managerRoutes from "./features/manager/routes/managerRoutes";
 
 let isLoggedIn = !!store.getState().auth.user;
 

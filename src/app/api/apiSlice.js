@@ -18,7 +18,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result?.error?.originalStatus === 403) {
+  if (result?.error?.status === 403) {
     console.log("Sending refresh token ...");
 
     const refreshResult = await baseQuery(
@@ -27,11 +27,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       extraOptions
     );
 
-    console.log(refreshResult);
-
     if (refreshResult?.error) {
       console.log("Refresh token failed");
       api.dispatch(logOut());
+      localStorage.removeItem("user");
     } else {
       console.log("Refresh token success");
       result = await baseQuery(args, api, extraOptions);

@@ -1,7 +1,7 @@
 import store from "../../app/store";
-import CustomerProfileContainer from "../../features/customer/containers/CustomerProfileContainer";
-import DeliveryProfileContainer from "../../features/delivery/containers/DeliveryProfileContainer";
-import ManagerProfileContainer from "../../features/manager/containers/ManagerProfileContainer";
+import DeliveryProfileContainer from "../../features/Delivery/containers/DeliveryProfileContainer";
+import ManagerProfileContainer from "../../features/Manager/containers/ManagerProfileContainer";
+import CustomerProfileContainer from "../../features/Customer/containers/CustomerProfileContainer";
 
 const userRoles = store.getState().auth.user?.roles;
 
