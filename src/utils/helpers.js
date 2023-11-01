@@ -1,4 +1,6 @@
 import CryptoJS from "crypto-js";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const encryptData = (data) => {
   const secretKey = import.meta.env.SECRET_KEY || "secretKey";
@@ -11,4 +13,12 @@ const decryptData = (data) => {
   return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 };
 
-export { encryptData, decryptData };
+const RedirectBack = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate(-1);
+  }, [navigate]);
+  return null;
+};
+
+export { encryptData, decryptData, RedirectBack };

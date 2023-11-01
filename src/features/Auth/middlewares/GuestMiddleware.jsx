@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../redux/authSelectors";
+import { RedirectBack } from "../../../utils/helpers";
 
 const GuestMiddleware = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <RedirectBack />;
   }
 
   return children;

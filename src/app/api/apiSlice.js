@@ -4,11 +4,7 @@ import { logOut } from "../../features/Auth/redux/authSlice";
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:8080/api/v1/",
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
-    if (token) {
-      headers.set("authorization", `Bearer ${token}`);
-    }
+  prepareHeaders: (headers) => {
     headers.set("content-type", "application/json");
     headers.set("accept", "application/json");
     return headers;

@@ -8,6 +8,7 @@ import deliveryRoutes from "./features/Delivery/routes/deliveryRoutes";
 import managerRoutes from "./features/Manager/routes/managerRoutes";
 import { AuthMiddleware, GuestMiddleware } from "./features/Auth/middlewares";
 import sharedRoutes from "./shared/routes/sharedRoutes";
+import mailRoutes from "./features/Mail/routes/mailRoutes";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
           ...managerRoutes,
         ],
       },
-
+      ...mailRoutes,
       {
         path: "*",
         element: <NotFoundPage />,
