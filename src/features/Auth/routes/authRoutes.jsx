@@ -1,10 +1,15 @@
 import { LoginContainer, RegisterContainer } from "../containers";
 import AuthLayout from "../layouts/AuthLayout";
+import { GuestMiddleware } from "../middlewares";
 
 const authRoutes = [
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: (
+      <GuestMiddleware>
+        <AuthLayout />
+      </GuestMiddleware>
+    ),
     children: [
       {
         path: "/auth",

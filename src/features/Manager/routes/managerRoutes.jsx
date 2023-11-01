@@ -1,10 +1,15 @@
+import { AuthMiddleware } from "../../Auth/middlewares";
 import ManagerProfileContainer from "../containers/ManagerProfileContainer";
 import ManagerLayout from "../layouts/ManagerLayout";
 
 const managerRoutes = [
   {
     path: "/manager",
-    element: <ManagerLayout />,
+    element: (
+      <AuthMiddleware>
+        <ManagerLayout />
+      </AuthMiddleware>
+    ),
     children: [
       {
         path: "profile",

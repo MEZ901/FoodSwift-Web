@@ -2,24 +2,32 @@ import store from "../../app/store";
 import DeliveryProfileContainer from "../../features/Delivery/containers/DeliveryProfileContainer";
 import ManagerProfileContainer from "../../features/Manager/containers/ManagerProfileContainer";
 import CustomerProfileContainer from "../../features/Customer/containers/CustomerProfileContainer";
-
-const userRoles = store.getState().auth.user?.roles;
+import { AuthMiddleware } from "../../features/Auth/middlewares";
 
 const sharedRoutes = [
   {
-    path: "/",
-    element: <h1>Home</h1>,
-  },
-  {
     path: "/profile",
     element: (() => {
+      const userRoles = store.getState().auth.user?.roles;
       switch (true) {
         case userRoles?.includes("manager"):
-          return <ManagerProfileContainer />;
+          return (
+            <AuthMiddleware>
+              <ManagerProfileContainer />
+            </AuthMiddleware>
+          );
         case userRoles?.includes("delivery"):
-          return <DeliveryProfileContainer />;
+          return (
+            <AuthMiddleware>
+              <DeliveryProfileContainer />
+            </AuthMiddleware>
+          );
         default:
-          return <CustomerProfileContainer />;
+          return (
+            <AuthMiddleware>
+              <CustomerProfileContainer />
+            </AuthMiddleware>
+          );
       }
     })(),
   },
