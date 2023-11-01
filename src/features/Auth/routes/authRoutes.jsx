@@ -1,4 +1,8 @@
-import { LoginContainer, RegisterContainer } from "../containers";
+import {
+  ForgetPasswordContainer,
+  LoginContainer,
+  RegisterContainer,
+} from "../containers";
 import AuthLayout from "../layouts/AuthLayout";
 import { GuestMiddleware } from "../middlewares";
 
@@ -24,6 +28,10 @@ const authRoutes = [
         element: <RegisterContainer />,
       },
     ],
+  },
+  {
+    path: "forget-password",
+    element: <ForgetPasswordContainer />,
   },
 ];
 

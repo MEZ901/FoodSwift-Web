@@ -6,7 +6,7 @@ import { loginSchema } from "../schemas";
 import { useLoginMutation } from "../redux/authApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../redux/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alert from "../../../shared/components/Alert";
 import { encryptData } from "../../../utils/helpers";
 
@@ -98,9 +98,12 @@ const LoginForm = () => {
 
         <div className="flex justify-between w-full mt-4">
           <Checkbox size="md">Remember me</Checkbox>
-          <a href="#" className="text-xs text-gray-500 hover:underline">
+          <Link
+            to="/forget-password"
+            className="text-xs text-gray-500 hover:underline"
+          >
             Forget Password?
-          </a>
+          </Link>
         </div>
       </div>
 
