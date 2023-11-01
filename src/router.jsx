@@ -8,14 +8,6 @@ import deliveryRoutes from "./features/Delivery/routes/deliveryRoutes";
 import managerRoutes from "./features/Manager/routes/managerRoutes";
 import { AuthMiddleware, GuestMiddleware } from "./features/Auth/middlewares";
 import sharedRoutes from "./shared/routes/sharedRoutes";
-import store from "./app/store";
-
-let isLoggedIn = !!store.getState().auth.user;
-
-store.subscribe(() => {
-  isLoggedIn = !!store.getState().auth.user;
-  // TODO: Rerender the router
-});
 
 const router = createBrowserRouter([
   {
@@ -23,30 +15,30 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorBoundaryPage />,
     children: [
-      isLoggedIn
-        ? {
-            path: "/",
-            element: (
-              <AuthMiddleware>
-                <UserLayout />
-              </AuthMiddleware>
-            ),
-            children: [
-              ...sharedRoutes,
-              ...customerRoutes,
-              ...deliveryRoutes,
-              ...managerRoutes,
-            ],
-          }
-        : {
-            path: "/",
-            element: (
-              <GuestMiddleware>
-                <GuestLayout />
-              </GuestMiddleware>
-            ),
-            children: [...landingPageRoutes, ...authRoutes],
-          },
+      {
+        path: "/",
+        element: (
+          <GuestMiddleware>
+            <GuestLayout />
+          </GuestMiddleware>
+        ),
+        children: [...landingPageRoutes, ...authRoutes],
+      },
+      {
+        path: "/",
+        element: (
+          <AuthMiddleware>
+            <UserLayout />
+          </AuthMiddleware>
+        ),
+        children: [
+          ...sharedRoutes,
+          ...customerRoutes,
+          ...deliveryRoutes,
+          ...managerRoutes,
+        ],
+      },
+
       {
         path: "*",
         element: <NotFoundPage />,

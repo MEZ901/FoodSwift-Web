@@ -7,7 +7,7 @@ const GuestMiddleware = ({ children }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   if (isLoggedIn) {
-    return <Navigate to="/" />;
+    return <Navigate to="/profile" />;
   }
 
   return children;
