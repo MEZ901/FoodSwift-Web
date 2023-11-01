@@ -2,9 +2,12 @@ import { useCustomerProfileQuery } from "../redux/customerApiSlice.js";
 
 const CustomerProfileContainer = () => {
   const { data } = useCustomerProfileQuery();
-  console.log(data);
 
-  return <div>CustomerProfileContainer</div>;
+  return (
+    <div className="h-screen w-full flex justify-center items-center">
+      {data?.message}
+    </div>
+  );
 };
 
 export default CustomerProfileContainer;
