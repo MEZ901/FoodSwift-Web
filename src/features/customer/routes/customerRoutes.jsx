@@ -1,7 +1,13 @@
+import { AuthMiddleware } from "../../Auth/middlewares";
+
 const customerRoutes = [
   {
     path: "/customer",
-    element: <h1>Customer</h1>,
+    element: (
+      <AuthMiddleware>
+        <h1>Customer</h1>
+      </AuthMiddleware>
+    ),
   },
 ];
 

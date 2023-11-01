@@ -1,9 +1,14 @@
+import { GuestMiddleware } from "../../Auth/middlewares";
 import LandingPageContainer from "../containers/LandingPageContainer";
 
 const landingPageRoutes = [
   {
     path: "/",
-    element: <LandingPageContainer />,
+    element: (
+      <GuestMiddleware>
+        <LandingPageContainer />
+      </GuestMiddleware>
+    ),
   },
 ];
 
