@@ -56,3 +56,4 @@ The API documentation can be found [here](https://documenter.getpostman.com/view
 Make sure to configure the API endpoint in your application to match your API server's address. The default endpoint is `http://localhost:8080`.
 
 ## Docker
+The Docker documentation can be found [here](https://github.com/MEZ901/FoodSwift-Web/tree/main/docker#readme).
