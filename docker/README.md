@@ -1,6 +1,15 @@
 # FoodSwift-Web Docker Documentation
 This documentation provides instructions for running the FoodSwift-Web application using Docker.
 
+## Table of Contents
+
+- [FoodSwift-Web Docker Documentation](#foodswift-web-docker-documentation)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+  - [Running the Application with Docker Compose](#running-the-application-with-docker-compose)
+  - [Stopping the Docker Container](#stopping-the-docker-container)
+  - [Running the API and the Web Application Together with Docker Compose](#running-the-api-and-the-web-application-together-with-docker-compose)
+
 ## Prerequisites
 - Docker
 - Docker Compose
