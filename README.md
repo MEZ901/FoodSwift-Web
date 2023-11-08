@@ -29,23 +29,23 @@ Before you start, make sure you have the following software installed:
 
 ### Installation
 1. Clone the repository
-```sh
-git clone git@github.com:MEZ901/FoodSwift-Web.git
-```
-1. Change directory
-```sh
-cd FoodSwift-Web
-```
-1. Install dependencies
-```sh
-npm install
-```
+   ```sh
+   git clone git@github.com:MEZ901/FoodSwift-Web.git
+   ```
+2. Change directory
+   ```sh
+   cd FoodSwift-Web
+   ```
+3. Install dependencies
+   ```sh
+   npm install
+   ```
 
 ## Usage
 1. Start the development server
-```sh
-npm run dev
-```
+   ```sh
+   npm run dev
+   ```
 2. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 > **Note:** This project uses API endpoints from the [FoodSwift-API](https://github.com/MEZ901/FoodSwift-API) repository. Make sure to start the API server before running the frontend.

@@ -16,17 +16,22 @@ This documentation provides instructions for running the FoodSwift-Web applicati
 
 ## Running the Application with Docker Compose
 1. Clone the `FoodSwift-Web` repository to your local machine if you haven't already.
-2. Navigate to the root directory of the `FoodSwift-Web` project.
-3. Open a terminal and change to the `FoodSwift-Web` directory.
-4. Build the Docker container.
+   ```sh
+   git clone git@github.com:MEZ901/FoodSwift-Web.git
+   ```
+2. Open a terminal and change to the `FoodSwift-Web` directory.
+   ```sh
+   cd FoodSwift-Web
+   ```
+3. Build the Docker container.
     ```sh
     docker-compose build
     ```
-5. Run the Docker container.
+4. Run the Docker container.
     ```sh
     docker-compose up
     ```
-6. Open a browser and navigate to `http://localhost:3000` to view the application.
+5. Open a browser and navigate to `http://localhost:3000` to view the application.
 
 ## Stopping the Docker Container
 To stop the running Docker container, open a terminal in the same directory where the docker-compose.yml file is located and run:
